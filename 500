@@ -1,0 +1,11 @@
+class Solution:
+    def findWords(self, words: List[str]) -> List[str]:
+        s1 = set('qwertyuiop')
+        s2 = set('asdfghjkl')
+        s3 = set('zxcvbnm')
+        res = []
+        for x in words:
+            p = set(x.lower())
+            if p.issubset(s1) or p.issubset(s2) or p.issubset(s3):
+                res.append(x)
+        return res
