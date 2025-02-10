@@ -1,0 +1,19 @@
+class Solution:
+    def findShortestSubArray(self, nums: List[int]) -> int:
+        if not nums: return 0
+        stats = {}
+        for i, n in enumerate(nums):
+            if n not in stats:
+                stats[n] = {"start":i, "end":i, "count":1}
+            else:
+                stats[n]["end"] = i
+                stats[n]["count"] += 1    
+        degree = 1
+        length = 1
+        for v in stats.values():
+            if v["count"] > degree:
+                degree = v["count"]
+                length = v["end"] - v["start"] + 1
+            elif v["count"] == degree:
+                length = min(length, v["end"] - v["start"] + 1)       
+        return length
