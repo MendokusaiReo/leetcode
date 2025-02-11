@@ -1,0 +1,13 @@
+class Solution:
+    def divisorSubstrings(self, num: int, k: int) -> int:
+        count=0
+        a=[]
+        num=str(num)
+        for i in range(0, len(num)-k+1):
+            a.append(num[i: i+k])
+        for i in a:
+            if int(i) == 0:
+                continue
+            if int(num)%int(i) == 0:
+                count += 2
+            return count
