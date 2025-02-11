@@ -1,0 +1,3 @@
+class Solution:
+    def minSwaps(self, nums: List[int]) -> int:
+        return (n:=len(nums),o:=sum(nums),w:=sum(nums[:o])) and o-max(w:=w-nums[i]+nums[(i+o)%n] for i in range(n))
