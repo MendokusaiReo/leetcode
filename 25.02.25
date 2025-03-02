@@ -1,0 +1,69 @@
+145
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def postorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        if not root:
+            return []
+        stack=[]
+        stack.append(root)
+        ans=[]
+        while stack:
+            node=stack.pop()
+            ans.append(node.val)
+            if node.left:
+                stack.append(node.left)
+            if node.right:
+                stack.append(node.right)
+        return ans[::-1]
+
+        226
+class Solution:
+    def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+        return TreeNode(root.val, self.invertTree(root.right), self.invertTree(root.left)) if root else None
+
+        590
+        
+class Solution:
+    def postorder(self, root: 'Node') -> List[int]:
+        def dfs(node):
+            """Populate ans via post-order traversal."""
+            if not node: return 
+            for child in node.children: dfs(child)
+            ans.append(node.val)            
+        ans = []
+        dfs(root)
+        return ans 
+
+        2236
+        class Solution:
+    def checkTree(self, root: Optional[TreeNode]) -> bool:
+        return root.val == root.left.val + root.right.val
+
+        938
+        
+class Solution:
+    def rangeSumBST(self, root: Optional[TreeNode], low: int, high: int) -> int:
+        if root:
+            if root.val<low:
+                return self.rangeSumBST(root.right,low,high)
+            elif root.val>high:
+                return self.rangeSumBST(root.left,low,high)
+            return root.val + self.rangeSumBST(root.left,low,high) + self.rangeSumBST(root.right,low,high)
+        else:
+            return 0
+
+            1038
+            class Solution:
+    def bstToGst(self, root: Optional[TreeNode]) -> Optional[TreeNode]:    
+        def dfs(node, adj):
+            if node is None:
+                return adj
+            node.val = node.val + dfs(node.right, adj)
+            return dfs(node.left, node.val)
+        dfs(root, 0)
+        return root
